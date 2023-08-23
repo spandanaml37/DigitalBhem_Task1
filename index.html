@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width-device-width,initial-scale=1.0">
+        <title>HotelRegistrationForm</title>
+        <style>
+            *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(background.jpg);
+ }
+ .container{
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+ }
+ .container header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+ }
+ .container header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #4070f4;
+ }
+ .container form{
+    position: relative;
+    margin-top: 16px;
+    min-height: 350px;
+    background-color: #f2f2f2;
+ }
+ .container form .details{
+    margin-top: 30px;
+ }
+ .container form .title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+ }
+ .container form .fields{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+ }
+ form .fields .input-field{
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+ }
+ .input-field label{
+    font-size: 14px;
+    font-weight: 500;
+    color: #2e2e2e;
+ }
+ .input-field input{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 32px;
+    margin-top: 8px 0;
+ }
+ .input-field input:is(:focus,:valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+ }
+ .input-field input[type="date"]{
+    color: #707070;
+ }
+ .input-field input[type="date"]:valid{
+    color: #333;
+ }
+ .container form button{
+    position: relative;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 500px;
+    width: 100%;
+    background-color: #4070f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 15px 32px;
+    left: 5px;
+ }
+ .container form .button{
+    position: relative;
+    top: 5px;
+    right: 15px;
+ }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                Registration
+            </header>
+            <form id="register">
+                <div class="form first">
+                    <div class="details">
+                        <span class="title">Customer Info</span>
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Customer Name:</label>
+                                <input type="text" placeholder="Enter your name">
+                            </div>
+                            <div class="input-field">
+                                <label>Check-in-Date:</label>
+                                <input type="date">
+                            </div>
+                            <div class="input-field">
+                                <label>Total no.of Days:</label>
+                                <input type="text" placeholder="Enter Days" id="td">
+                            </div>
+                            <div class="input-field">
+                                <label>Total no.of people:</label>
+                                <input type="text" placeholder="Enter number" id="tp">
+                            </div>
+                            <div class="input-field">
+                                <label>Room Type:</label>
+                                <select id="rt" name="roomtype">
+                                    <option value="deluxe">Deluxe</option>
+                                    <option value="suite">Suite</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <label>Amenities:</label>
+                                <div class="checkbox">
+                                 <label><input type="checkbox" name="amenities" value="AC">AC</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="amenities" value="Locker">Locker</label>
+                                   </div>
+                            </div>
+                            <div class="input-field">
+                                <label for="advancePayment">Advance Payment:</label>
+                                <input type="number" id="advancePayment" name="advancePayment" min="0" required>
+                            </div>
+                            <div class="input-field">
+                                <label>Total Amount:</label>
+                                <span id="totalAmount" class="amount"></span>
+                            </div>
+                            <div class="input-field">
+                                <label>Room Cost:</label>
+                                <span id="roomCost" class="amount"></span>
+                            </div>
+                            <div class="input-field">
+                                <label>Amenities Cost:</label>
+                                <span id="amenitiesCost" class="amount"></span>
+                            </div>
+                            <div class="input-field">
+                                <label>Extra Person Cost:</label>
+                                <span id="epc" class="amount"></span>
+                            </div>
+                            <div class="input-field">
+                                <label>Balance Amount:</label>
+                                <span id="balanceAmount" class="amount"></span>
+                            </div>
+                            <div class="form-button">
+                                <button type="submit">Total</button>
+                            </div>
+                            <div class="button">
+                                <button id="reg" onclick="message()">Register</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <script>
+            const form = document.getElementById('register');
+            form.addEventListener('submit', calculate);
+
+function calculate(event) {
+  event.preventDefault();
+
+  const totalDays = parseInt(document.getElementById('td').value);
+  const totalPersons = parseInt(document.getElementById('tp').value);
+  const roomType = document.getElementById('rt').value;
+  const amenities = Array.from(document.getElementsByName('amenities'))
+    .filter(input => input.checked)
+    .map(input => input.value);
+  const advancePayment = parseInt(document.getElementById('advancePayment').value);
+  const roomRate = getRoomRate(roomType);
+  const roomCost = roomRate * totalDays;
+
+  
+  const amenitiesRate = getAmenitiesRate(amenities);
+  const amenitiesCost = amenitiesRate * totalDays;
+
+  
+  const extraPersonsCost = calculateExtraPersonsCost(totalPersons);
+
+  
+  const totalAmount = roomCost + amenitiesCost + extraPersonsCost;
+  const balanceAmount = totalAmount - advancePayment;
+
+  document.getElementById('totalAmount').textContent = totalAmount;
+  document.getElementById('roomCost').textContent = roomCost;
+  document.getElementById('amenitiesCost').textContent = amenitiesCost;
+  document.getElementById('epc').textContent = extraPersonsCost;
+  document.getElementById('balanceAmount').textContent = balanceAmount;
+}
+
+function getRoomRate(roomType) {
+  switch (roomType) {
+    case 'deluxe':
+      return 2500;
+    case 'suite':
+      return 4000;
+    default:
+      return 0;
+  }
+}
+
+function getAmenitiesRate(amenities) {
+  let rate = 0;
+  for (const amenity of amenities) {
+    switch (amenity) {
+      case 'AC':
+        rate += 1000;
+        break;
+      case 'Locker':
+        rate += 300;
+        break;
+      default:
+        break;
+    }
+  }
+  return rate;
+}
+
+function calculateExtraPersonsCost(totalPersons) {
+  if (totalPersons <= 2) {
+    return 0;
+  } else {
+    const extraPersons = totalPersons - 2;
+    return extraPersons * 1000;
+  }
+}
+function message(reg){
+    window.alert("Registration Successfulll!!")
+}
+
+
+        </script> 
+        
+    </body>
+</html>
